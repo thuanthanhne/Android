@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính toán HCN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        audio, video {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function calculate() {
+            let length = parseFloat(document.getElementById("length").value);
+            let width = parseFloat(document.getElementById("width").value);
+
+            if (isNaN(length) || isNaN(width)) {
+                alert("Vui lòng nhập số hợp lệ!");
+                document.getElementById("result").innerText = "Vui lòng nhập số hợp lệ!";
+                return;
+            }
+
+            // Gọi hàm từ Android và nhận kết quả
+            let result = Android.calculateRectangle(length, width);
+            document.getElementById("result").innerText = result;
+
+            // Hiển thị thông báo WebView
+            alert(result);
+        }
+    </script>
+</head>
+<body>
+<h1>Họ và tên : Phạm Ngọc Thuận Thanh</h1><br>
+<h1>Năm sinh : 2003</h1><br>
+<h2>Nghe âm thanh (MP3):</h2>
+<audio controls>
+    <source src="file:///android_asset/mp3/1.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ thẻ audio.
+</audio>
+
+<h2>Xem video (MP4):</h2>
+<video controls width="320" height="240">
+    <source src="file:///android_asset/mp4/2.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ thẻ video.
+</video>
+<h2>Tính chu vi & diện tích HCN</h2>
+<input id="length" type="number" placeholder="Nhập chiều dài"><br>
+<input id="width" type="number" placeholder="Nhập chiều rộng"><br>
+<button onclick="calculate()">Tính toán</button>
+<p id="result"></p>
+</body>
+</html>
